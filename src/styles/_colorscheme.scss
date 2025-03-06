@@ -1,0 +1,217 @@
+@use "base";
+@use "sass:color";
+
+// This is called only from the body element,
+// light is standard and dark is called from a media query prefers dark containing the body.
+@mixin theme($theme) {
+    @if $theme ==dark {
+        color: base.$dath-fg-color;
+        background-color: base.$dath-bg-color;
+        border-color: base.$dath-fg-color;
+        @extend %dark-theme; // Extends the theme by nesting.
+    } @else if $theme ==light {
+        color: base.$lith-fg-color;
+        background-color: base.$lith-bg-color;
+        border-color: base.$lith-fg-color;
+        @extend %light-theme; // Extends the theme by nesting.
+    }
+}
+
+// Changes the color of the menu items depending on theme. Additionally, the active and hover effects are applied here as well.
+@mixin menu-item($theme) {
+    @if $theme == dark {
+        background-color: base.$dath-header-nav-bg-color;
+        li {
+            background-color: base.$dath-header-nav-bg-color;
+            a {
+                color: base.$dath-fg-color;
+                text-decoration: none;
+            }
+        }
+        li:active {
+            background-color: color.adjust(base.$dath-header-nav-bg-color, $lightness: -5%);
+        }
+        li:hover {
+            background-color: color.adjust(base.$dath-header-nav-bg-color, $lightness: -3%);
+        }
+    } @else if $theme == light {
+        background-color: base.$lith-header-nav-bg-color;
+        li {
+            background-color: base.$lith-header-nav-bg-color;
+            a {
+                color: base.$lith-fg-color;
+                text-decoration: none;
+            }
+        }
+        li:active {
+            background-color: color.adjust(base.$lith-header-nav-bg-color, $lightness: -5%);
+        }
+        li:hover {
+            background-color: color.adjust(base.$lith-header-nav-bg-color, $lightness: -3%);
+        }
+    }
+    
+}
+
+// The theme and visual effects for buttons.
+%button-theme {
+    .button {
+        background-color: base.$btn-color;
+    }
+    .button:hover {
+        background-color: color.adjust(base.$btn-color, $lightness: -5%);
+    }
+    .button:active {
+        background-color: color.adjust(base.$btn-color, $lightness: -10%);
+    }
+}
+
+// Extends from the body through theme mixin when the theme is light.
+%light-theme {
+    header {
+        background-color: base.$lith-header-bg-color;
+        #menu {
+            @include menu-item(light);
+        }
+        #menu-btn {
+            background-color: base.$lith-header-bg-color;
+            border-color: base.$lith-fg-color;
+        }
+        .menu-holder {
+            border-top-color: base.$lith-header-bg-color;
+        }
+        #menu-btn>svg {
+            fill: base.$lith-fg-color;
+        }
+    }
+    main {
+        background-color: color.adjust(base.$lith-bg-color, $lightness: -3%);
+        .information-box {
+            background-color: base.$alth-info-box-bg-color;
+        }
+
+        // Background color for the grid menu in animations.
+        #item1 {
+            background-color: base.$lith-grid-menu-bg;
+        }
+
+        #cooldown-div {
+            background-color: base.$lith-loading-bar-bg;
+        }
+        #powerful-btn {
+            background-color: base.$dath-fg-color;
+        }
+        #powerful-btn:hover {
+            background-color: color.adjust(base.$dath-fg-color, $lightness: -5%);
+        }
+        #powerful-btn:active {
+            background-color: color.adjust(base.$dath-fg-color, $lightness: -15%);
+            font-size: 0.8rem;
+        }
+    }
+
+    .anime-list-item {
+        background-color: color.adjust(base.$lith-bg-color, $lightness: -6%);
+    }
+
+    #search-field {
+        background-color: base.$lith-search-bg-color;
+        font-family: base.$font-stack;
+    }
+ 
+    footer {
+        background-color: base.$lith-header-bg-color;
+    }
+}
+
+.anime-info-table {
+    td,
+    th {
+        @include theme(light);
+    }
+}
+
+// Cannot extend cross queries.
+@media (prefers-color-scheme: dark) {
+    .anime-info-table {
+        td,
+        th {
+            @include theme(dark);
+        }
+    }
+    // Extends from the body through theme mixin when the theme is dark.
+    %dark-theme {
+        header {
+            background-color: base.$dath-header-bg-color;
+            #menu {
+                @include menu-item(dark);
+            }
+            #menu-btn {
+                background-color: base.$dath-header-bg-color;
+                border-color: base.$dath-fg-color;
+            }
+            .menu-holder {
+                border-top-color: base.$dath-header-bg-color;
+            }
+            #menu-btn>svg {
+                fill: base.$dath-fg-color;
+            }
+        }
+
+        main {
+            background-color: color.adjust(base.$dath-bg-color, $lightness: -3%);
+            .information-box {
+                background-color: base.$alth-info-box-bg-color;
+            }
+            // Background color for the grid menu in animations.
+            #item1 {
+                background-color: base.$dath-grid-menu-bg;
+            }
+
+            #cooldown-div {
+                background-color: base.$dath-loading-bar-bg;
+            }
+            #powerful-btn {
+                background-color: base.$dath-fg-color;
+            }
+            #powerful-btn:hover {
+                background-color: color.adjust(base.$dath-fg-color, $lightness: -5%);
+            }
+            #powerful-btn:active {
+                background-color: color.adjust(base.$dath-fg-color, $lightness: -15%);
+                font-size: 0.8rem;
+            }
+        }
+
+        .anime-list-item {
+            background-color: color.adjust(base.$dath-bg-color, $lightness: -6%);
+            
+        }
+        
+        #search-field {
+            background-color: base.$dath-search-bg-color;
+            color: base.$dath-fg-color;
+            font-family: base.$font-stack;
+        }
+        
+        // Charts
+        .apexcharts-text {
+            fill: base.$dath-fg-color;
+        }
+        .apexcharts-legend-text {
+            color: base.$dath-fg-color !important;
+        }
+        .apexcharts-title-text {
+            fill: base.$dath-fg-color;
+        }
+        
+        // Search and map
+        .result-item {
+            background-color: color.adjust(base.$dath-bg-color, $lightness: -6%);
+        }
+
+        footer {
+            background-color: base.$dath-header-bg-color;
+        }
+    }
+}

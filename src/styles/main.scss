@@ -1,0 +1,21 @@
+@use "base"; // <----------------- Variables.
+@use "layout"; // <--------------- Layouts.
+@use "colorscheme"; // <---------- Dark/Light Themes.
+@use "animations"; // <----------- Animations.
+
+body {
+    margin: 0;
+
+    @include colorscheme.theme(light);
+    @extend %button-theme; // Buttons have the same appearance and visual effects in light/dark theme.
+
+    font-family: base.$font-stack;
+    line-height: base.$global-line-height;
+}
+
+// Changes the theme from the body to all relevant child elements through extension in the theme mixin.
+@media (prefers-color-scheme: dark) {
+    body {
+        @include colorscheme.theme(dark);
+    }
+}

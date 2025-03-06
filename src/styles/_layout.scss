@@ -1,0 +1,353 @@
+
+header {
+    z-index: 10;
+    position: fixed;
+    top: 0;
+
+    width: 100%;
+    height: 3rem;
+
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+
+    border-bottom: 1px solid;
+
+    display: flex;
+    flex-direction: row;
+
+    p {
+        width: 100%;
+    }
+}
+
+// The element that holds the menu nav and menu button.
+.menu-holder {
+    position: absolute;
+    top: 100%;
+    right: 15%;
+
+    width: 70%;
+
+    overflow: hidden;
+
+    min-height: 3rem;
+    height: fit-content;
+
+    display: grid;
+    grid-template-rows: 3rem 0px;
+
+    transition: 0.5s;
+
+    // The nav.
+    #menu {
+        display: block;
+        transition: 0.5s;
+        overflow: hidden;
+    }
+
+    // The list in the nav.
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        height: inherit;
+        li {
+            flex: 1;
+            display: flex;
+            height: inherit;
+            flex-direction: row;
+            a {
+                flex: 1;
+                display: grid; // To center the text.
+                place-items: center;
+            }
+        }
+    }
+}
+
+#menu-btn {
+    z-index: 100;
+
+    display: none;
+    border: 1px solid;
+    border-top: none;
+    margin: 0 auto;
+    width: 100%;
+    height: 2.5rem;
+
+    cursor: pointer;
+
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    svg {
+        height: 100%;
+        aspect-ratio: 1/1;
+    }
+}
+
+main {
+    width: 95%;
+    max-width: 1400px;
+
+    min-height: 100vh;
+    margin: 0 auto;
+    margin-top: 10rem;
+    padding: 1rem;
+
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+
+    .information-box {
+        margin: 0 auto;
+        padding: 1rem;
+        width: 90%;
+        max-width: 700px;
+
+        border: 1px solid;
+        border-radius: 20px;
+
+        h2 {
+            margin-bottom: 0;
+            margin-top: 0.5rem;
+        }
+        p {
+            margin-top: 0.5rem;
+        }
+    }
+
+    .page-holder {
+        align-self: flex-end;
+        margin: 2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .scss-evaluation-article {
+        width: 90%;
+        max-width: 700px;
+    }
+
+    // For the top margins of ul elements inside the article elements on the SCSS-page.
+    .scss-evaluation-article > ul {
+        margin-top: 0;
+        margin-bottom: 2rem;
+    }
+    .scss-evaluation-article > p {
+        margin-bottom: 0.2rem;
+    }
+}
+
+.list-navigation {
+    height: 4rem;
+    margin: 4rem 0;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    #search-field,
+    #search {
+        height: 2rem;
+    }
+
+    // To turn the svg arrow on the previous button the other way.
+    .prev {
+        transform: rotate(180deg);
+    }
+}
+
+// The div that holds the anime list.
+#anime-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 75px;
+}
+
+// The layout for the article that holds information about the anime.
+.anime-list-item {
+    max-width: 600px;
+    padding: 1rem;
+
+    border-radius: 20px;
+    border: 1px solid;
+
+    display: flex;
+    flex-direction: column;
+
+    // The image of the anime.
+    .poster {
+        width: 100%;
+        max-width: 225px;
+        height: auto;
+        float: left;
+        margin-right: 1rem;
+    }
+
+    p {
+        margin: 0;
+        text-align: justify;
+    }
+
+    h3 {
+        margin-bottom: 0.1rem;
+    }
+
+    .anime-info-table {
+        width: 50%;
+        margin: 0 auto;
+
+        // The rows of the table.
+        tr {
+            display: grid;
+            grid-template-columns: 25% 25% 50%;
+            grid-template-rows: auto auto;
+            text-align: center;
+
+            // The cells of the table.
+            td,
+            th {
+                align-content: center;
+                border: 1px solid;
+            }
+        }
+    }
+}
+
+// Indicates where the user is.
+.here > a {
+    font-weight: 700;
+    border-bottom: 3px solid;
+    box-shadow: 0px 5px 10px black;
+    z-index: 1;
+}
+
+footer {
+    margin-top: 5rem;
+    padding: 0.5rem;
+
+    border-top: 1px solid;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+// Charts
+#chart1 .apexcharts-text{
+    display: none;
+}
+.charts {
+    align-self: center;
+    width: 75%;
+}
+
+// Search and map
+.search-box {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 4rem;
+}
+
+#search {
+    height: 2rem;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+#search-results {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.result-item {
+    font-size: 0.8rem;
+    line-height: 1rem;
+    border: 1px solid;
+    padding: 0.5rem;
+    transition: 0.3s transform;
+    user-select: none;
+    cursor: pointer;
+    .place-name{
+        margin: 0;
+    }
+    .coords {
+        margin: 0;
+        font-size: 0.7rem;
+    }
+}
+
+.result-item:hover {
+    transform: scale(110%, 110%);
+    z-index: 2;
+}
+#map {
+    align-self: center;
+    width: 75%;
+    height: auto;
+    aspect-ratio: 1/1;
+}
+// Mobile
+@media screen and (max-width: 600px) {
+    // Center the "Moment 3" text.
+    header {
+        text-align: center;
+    }
+    .menu-holder {
+        grid-template-rows: 0px 2.5rem;
+        border-top: 1px solid; // Is placed above the header's border-bottom. It has the same color as the header's background.
+
+        // Change the direction of the menu items.
+        ul {
+            flex-direction: column;
+        }
+    }
+
+    #menu {
+        height: 0px;
+        border-left: 1px solid;
+        border-right: 1px solid;
+    }
+
+    #menu-btn {
+        display: block !important;
+    }
+
+    .anime-list-item {
+        .poster {
+            float: none;
+        }
+
+        table {
+            width: 100%;
+        }
+    }
+
+    main {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        margin-top: 10rem;
+    }
+}
+
+@media screen and (min-width: 601px) {
+    .menu-holder {
+        top: 0 !important;
+        grid-template-rows: 3rem 0px !important;
+    }
+    #menu {
+        height: 3rem !important;
+    }
+}
